@@ -1,0 +1,11 @@
+galaxy_info:
+  author: Bibin Vasudevan
+  description: Ansible role for detecting and deleting old jira users
+  license: Bibin
+  min_ansible_version: 2.3
+  galaxy_tags: []
+
+dependencies:
+  - name: oracle-instantclient-install
+    src: git+http://git...../ansible/oracle-instantclient-install.git
+    version: v1.0

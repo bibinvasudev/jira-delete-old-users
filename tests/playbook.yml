@@ -1,0 +1,24 @@
+- hosts: all
+  pre_tasks:
+    - name: Include Vault
+      include_vars: "{{ playbook_dir }}/testvault.yml"
+  roles:
+    - jira-delete-old-users
+
+  tasks:
+    - name: |
+        Get (but dont delete) users that have not logged on for more than
+        90 days
+      jira_lib:
+        port: 1521
+        delete: True
+        state: present
+        days: 90
+        hostname: "{{ vault_hostname }}"
+        service_name: "{{ vault_service_name }}"
+        user: "{{ vault_user }}"
+        password: "{{ vault_password }}"
+
+      register: result
+    - debug:
+        var: result
